@@ -1,12 +1,13 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
+
 class ValueObject
 {
-    private $red ;
+    private $red;
     private $green;
     private $blue;
 
-    public function __construct($red, $green ,$blue)
+    public function __construct($red, $green, $blue)
     {
         $this->setRed($red);
         $this->setGreen($green);
@@ -27,6 +28,7 @@ class ValueObject
     {
         return $this->blue;
     }
+
     public function setRed($red): void
     {
 
@@ -74,7 +76,8 @@ class ValueObject
         }
     }
 
-    public static function random() {
+    public static function random()
+    {
         $red = rand(0, 255);
         $green = rand(0, 255);
         $blue = rand(0, 255);
