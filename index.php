@@ -1,39 +1,27 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-interface FlyingBird {
-    public function eat();
-    public function fly();
+interface Database {
+    public function getData();
 }
-
-interface NotFlyingBird
+class Mysql implements Database
 {
-    public function eat();
-}
-
-class Swallow implements FlyingBird
-{
-    public function eat()
+    public function getData()
     {
-        // TODO: Implement eat() method.
-    }
-
-    public function fly()
-    {
-        // TODO: Implement fly() method.
+        return 'some data from database';
     }
 }
 
-class Ostrich implements NotFlyingBird
+class Controller implements Database
 {
-    public function eat()
+    private $adapter;
+    public function __construct(Database $adapter)
     {
-        // TODO: Implement eat() method.
+        $this->adapter = $adapter;
+    }
+    public function getData()
+    {
+        return $this->adapter->getData();
     }
 }
-
-
-
-
-
 
