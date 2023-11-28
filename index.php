@@ -1,93 +1,36 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-interface Format {
-    public function getFormat($string): string;
+interface FlyingBird {
+    public function eat();
+    public function fly();
 }
 
-class Raw implements Format {
-
-    public function getFormat($string): string
-    {
-        return $string;
-    }
-}
-
-class WithDate implements Format {
-
-    public function getFormat($string): string
-    {
-        return date('Y-m-d H:i:s') . $string;
-    }
-}
-
-class WithDateAndDetails implements Format {
-
-    public function getFormat($string): string
-    {
-        return date('Y-m-d H:i:s') . $string . '- With some details';
-    }
-}
-
-interface Delivery {
-    public function getDelivery($format);
-}
-
-class ByEmail implements Delivery {
-    public function getDelivery($format)
-    {
-        echo  "Вывод формата ({$format}) по имейл";
-    }
-}
-
-class BySms implements Delivery {
-    public function getDelivery($format)
-    {
-        echo  "Вывод формата ({$format}) в смс";
-    }
-}
-class ToConsole implements Delivery {
-    public function getDelivery($format)
-    {
-        echo  "Вывод формата ({$format}) в консоль";
-    }
-}
-
-class Logger
+interface NotFlyingBird
 {
-    private $format;
-    private $delivery;
+    public function eat();
+}
 
-    public function __construct( Format $format, Delivery $delivery)
+class Swallow implements FlyingBird
+{
+    public function eat()
     {
-        $this->format   = $format;
-        $this->delivery = $delivery;
+        // TODO: Implement eat() method.
     }
 
-    public function log($string)
+    public function fly()
     {
-        $this->deliver($this->format($string));
-    }
-
-    public function format($string)
-    {
-        return $this->format->getFormat($string);
-    }
-
-    public function deliver($format)
-    {
-        return $this->delivery->getDelivery($format);
+        // TODO: Implement fly() method.
     }
 }
 
-$format = new WithDate();
-$delivery = new ByEmail();
-
-$logger = new Logger($format, $delivery);
-$logger->log(' Emergency error! Please fix me! ');
-
-
-
+class Ostrich implements NotFlyingBird
+{
+    public function eat()
+    {
+        // TODO: Implement eat() method.
+    }
+}
 
 
 
