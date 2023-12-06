@@ -8,5 +8,5 @@ interface Builder
     public function email(string $email): Contact;
     public function phone(string $phone): Contact;
     public function address(string $address): Contact;
-    public function build (): object;
+    public function build (): Contact;
 }
