@@ -3,7 +3,7 @@
 namespace Builder;
 require_once '../vendor/autoload.php';
 
-class Contact
+class Contact implements Builder
 {
     private string $name;
     private string $surname;
@@ -36,6 +36,20 @@ class Contact
         $this->address = $address;
         return $this;
     }
+
+    public function reset() {
+        $this->name = '';
+        $this->surname = '';
+        $this->email = '';
+        $this->phone = '';
+        $this->address = '';
+    }
+
+    public function build(): Contact {
+        $contact = $this;
+        $this->reset();
+        return $contact;
+    }
 }
 
 $contact = new Contact();
@@ -43,5 +57,7 @@ $newContact = $contact->phone('000-555-000')
     ->name('John')
     ->surname('Surname')
     ->email('john@email.com')
-    ->address('Some address');
+    ->address('Some address')
+    ->build();
+
 dd($newContact);
