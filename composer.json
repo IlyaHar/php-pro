@@ -1,0 +1,12 @@
+{
+    "name": "root/html",
+    "autoload": {
+        "psr-4": {
+            "AbstractFactory\\": "AbstractFactory",
+            "Builder\\": "Builder"
+        }
+    },
+    "require": {
+        "larapack/dd": "^1.1"
+    }
+}
